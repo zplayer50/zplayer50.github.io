@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Chapter 1: Structures and Pointers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #121212;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h1, h2, h3 {
+            color: #bb86fc;
+        }
+        code {
+            background-color: #2c2c2c;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 2px 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #03dac6;
+        }
+        pre {
+            background-color: #2c2c2c;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 10px;
+            overflow-x: auto;
+            color: #03dac6;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #2c2c2c;
+            color: #bb86fc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chapter 1: Structures and Pointers</h1>
+
+    <div class="card">
+        <h2>1. Structures</h2>
+        <p>A structure is a user-defined data type in C++ that allows you to group related data items of different types under a single name.</p>
+        <h3>Syntax to define a structure:</h3>
+        <pre><code>struct structure_name
+{
+    data_type member1;
+    data_type member2;
+    // ...
+    data_type memberN;
+};</code></pre>
+        <h3>Example:</h3>
+        <pre><code>struct Student
+{
+    int roll_no;
+    char name[20];
+    float marks;
+};</code></pre>
+        <p>To create a structure variable and initialize it:</p>
+        <pre><code>Student s1 = {101, "John Doe", 85.5};</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>2. Arrays vs Structures</h2>
+        <table>
+            <tr>
+                <th>Arrays</th>
+                <th>Structures</th>
+            </tr>
+            <tr>
+                <td>Derived data type</td>
+                <td>User-defined data type</td>
+            </tr>
+            <tr>
+                <td>Collection of same type of data</td>
+                <td>Collection of different types of data</td>
+            </tr>
+            <tr>
+                <td>Elements accessed using index (e.g., arr[0])</td>
+                <td>Members accessed using dot operator (e.g., s1.roll_no)</td>
+            </tr>
+            <tr>
+                <td>Can be multi-dimensional</td>
+                <td>Can be nested (structure within structure)</td>
+            </tr>
+            <tr>
+                <td>Can have an array of structures</td>
+                <td>Can contain arrays as members</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>3. Nested Structures</h2>
+        <p>A nested structure is when one structure contains another structure as a member.</p>
+        <h3>Example:</h3>
+        <pre><code>struct Date
+{
+    int day;
+    int month;
+    int year;
+};
+
+struct Student
+{
+    int roll_no;
+    char name[20];
+    float marks;
+    Date birth_date;
+};</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>4. Pointers</h2>
+        <p>A pointer is a variable that stores the memory address of another variable.</p>
+        <h3>Syntax to declare a pointer:</h3>
+        <pre><code>data_type* pointer_name;</code></pre>
+        <h3>Examples:</h3>
+        <pre><code>int* ptr1;
+float* ptr2;
+Student* ptr3;</code></pre>
+        <h3>Key pointer operations:</h3>
+        <ul>
+            <li><code>&</code> (address-of operator): Gets the address of a variable</li>
+            <li><code>*</code> (dereference operator): Accesses the value pointed to by the pointer</li>
+        </ul>
+        <h3>Example:</h3>
+        <pre><code>int num = 10;
+int* ptr = &num;
+cout << *ptr;  // Outputs: 10</code></pre>
+    </div>
+    <div class="card">
+        <h2>5. Memory Allocation</h2>
+        <p>Two types of memory allocation in C++:</p>
+        <table>
+            <tr>
+                <th>Static Memory Allocation</th>
+                <th>Dynamic Memory Allocation</th>
+            </tr>
+            <tr>
+                <td>Occurs at compile time</td>
+                <td>Occurs at runtime</td>
+            </tr>
+            <tr>
+                <td>For variables declared normally in your code</td>
+                <td>Uses 'new' operator</td>
+            </tr>
+            <tr>
+                <td>Fixed memory size</td>
+                <td>Flexible memory management</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>6. Memory Leaks</h2>
+        <p>Memory leaks occur when dynamically allocated memory is not properly freed, leading to:</p>
+        <ul>
+            <li>Increased memory usage</li>
+            <li>Potential program crashes</li>
+        </ul>
+        <p>To prevent memory leaks:</p>
+        <ul>
+            <li>Always use 'delete' to free memory allocated with 'new'</li>
+            <li>Use smart pointers (std::unique_ptr, std::shared_ptr)</li>
+            <li>Implement proper error handling</li>
+            <li>Use memory profiling tools</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>7. Dynamic Arrays</h2>
+        <p>A dynamic array is created at runtime using the 'new' operator:</p>
+        <pre><code>int* arr = new int[size];</code></pre>
+        <p>Remember to delete when done:</p>
+        <pre><code>delete[] arr;</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>8. Self-Referential Structures</h2>
+        <p>A self-referential structure contains a pointer to its own type as a member.</p>
+        <h3>Example:</h3>
+        <pre><code>struct Node
+{
+    int data;
+    Node* next;
+};</code></pre>
+        <p>This is commonly used in data structures like linked lists.</p>
+    </div>
+</body>
+</html>
